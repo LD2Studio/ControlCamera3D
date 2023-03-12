@@ -1,6 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://bku6mk4nblwyb"]
+[gd_scene load_steps=6 format=3 uid="uid://iwwh81w4t6v7"]
 
-[ext_resource type="Script" path="res://addons/orbitalcam3d/nodes/orbital_camera_3d.gd" id="1_g7ssh"]
+[ext_resource type="Script" path="res://addons/control_camera3d/nodes/control_camera_3d.gd" id="1_qoept"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0m6x7"]
 albedo_color = Color(0.258824, 0.654902, 0.360784, 1)
@@ -29,6 +29,6 @@ mesh = SubResource("BoxMesh_1o4eg")
 [node name="Floor" type="MeshInstance3D" parent="."]
 mesh = SubResource("PlaneMesh_v44ss")
 
-[node name="OrbitalCamera3D" type="Camera3D" parent="."]
-transform = Transform3D(0.855202, -0.241857, 0.458405, 0, 0.884448, 0.466639, -0.518295, -0.399071, 0.756381, 1.92435, 1.95892, 3.17523)
-script = ExtResource("1_g7ssh")
+[node name="ControlCamera3D" type="Camera3D" parent="."]
+transform = Transform3D(0.90076, -0.25262, 0.35329, 0, 0.813439, 0.58165, -0.434316, -0.523927, 0.732714, 1.20742, 1.98787, 2.50416)
+script = ExtResource("1_qoept")

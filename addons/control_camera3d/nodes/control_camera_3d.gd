@@ -1,7 +1,7 @@
 @tool
-@icon("res://addons/orbitalcam3d/orbitalcam3d.svg")
+@icon("res://addons/control_camera3d/control_camera3d.svg")
 ## Camera node, displays from a point of view towards a pivot point and rotates around this point.
-class_name OrbitalCamera3D
+class_name ControlCamera3D
 extends Camera3D
 
 ## Global position of pivot point
@@ -13,7 +13,7 @@ extends Camera3D
 @export_group("Camera Control")
 ## Mouse button used for orbital movement
 @export_enum("LEFT_BUTTON", "MIDDLE_BUTTON")
-var orbital_mouse_button: String = "MIDDLE_BUTTON"
+var action_mouse_button: String = "MIDDLE_BUTTON"
 @export_range(0.5, 2, 0.1) var rotation_speed: float = 1.0
 @export_range(0.5, 4, 0.1) var translation_speed: float = 1.0
 @export_range(0.5, 2, 0.1) var zoom_speed: float = 1.0
@@ -75,7 +75,7 @@ func _process(delta: float) -> void:
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
-		match orbital_mouse_button:
+		match action_mouse_button:
 			"MIDDLE_BUTTON":
 				if event.button_index == MOUSE_BUTTON_MIDDLE and event.pressed:
 					if event.shift_pressed:
