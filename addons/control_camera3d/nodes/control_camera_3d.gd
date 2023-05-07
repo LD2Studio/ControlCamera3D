@@ -1,7 +1,6 @@
 @tool
 @icon("res://addons/control_camera3d/control_camera3d.svg")
 ## Camera node, displays from a point of view towards a pivot point and rotates around this point.
-class_name ControlCamera3D
 extends Camera3D
 
 ## Global position of pivot point
@@ -60,7 +59,7 @@ func _place_pivot():
 		var new_cam_pos: Vector3 = _pivot_transform.basis.z * -(_cam_from_pivot_dist) + pivot_pos
 		look_at_from_position(new_cam_pos, pivot_pos)
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	
 	if Engine.is_editor_hint():
 		_place_pivot()
@@ -86,7 +85,10 @@ func _input(event: InputEvent) -> void:
 					_state = State.IDLE
 			"LEFT_BUTTON":
 				if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
-					_state = State.ROTATED
+					if event.shift_pressed:
+						_state = State.TRANSLATED
+					else:
+						_state = State.ROTATED
 				elif event.button_index == MOUSE_BUTTON_LEFT and not event.pressed:
 					_state = State.IDLE
 		if event.button_index == MOUSE_BUTTON_RIGHT and event.pressed:
@@ -98,14 +100,14 @@ func _input(event: InputEvent) -> void:
 		State.IDLE:
 			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 		State.ROTATED, State.TRANSLATED, State.LOOKAT:
-			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+			Input.set_mouse_mode(Input.MOUSE_MODE_CONFINED)
 			
 	if event is InputEventMouseMotion and _state == State.ROTATED:
 		var euler_angles = _pivot_transform.basis.get_euler()
 		euler_angles.x += event.relative.y * _MOUSE_SENSITIVITY * rotation_speed
 		euler_angles.x = clampf(euler_angles.x, -PI/2 + _ANGLE_GAP, PI/2 - _ANGLE_GAP)
 		euler_angles.y -= event.relative.x * _MOUSE_SENSITIVITY * rotation_speed
-		_pivot_transform.basis = _pivot_transform.basis.from_euler(euler_angles)
+		_pivot_transform.basis = Basis.from_euler(euler_angles)
 		# Move camera position and look at
 		_cam_from_pivot_dist = global_position.distance_to(pivot_pos)
 		var new_cam_pos: Vector3 = _pivot_transform.basis.z * -(_cam_from_pivot_dist) + pivot_pos

@@ -30,5 +30,5 @@ mesh = SubResource("BoxMesh_1o4eg")
 mesh = SubResource("PlaneMesh_v44ss")
 
 [node name="ControlCamera3D" type="Camera3D" parent="."]
-transform = Transform3D(0.90076, -0.25262, 0.35329, 0, 0.813439, 0.58165, -0.434316, -0.523927, 0.732714, 1.20742, 1.98787, 2.50416)
+transform = Transform3D(0.90076, -0.252619, 0.35329, 0, 0.81344, 0.581649, -0.434316, -0.523926, 0.732715, 1.20742, 1.98787, 2.50416)
 script = ExtResource("1_qoept")
