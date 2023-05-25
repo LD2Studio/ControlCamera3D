@@ -72,7 +72,7 @@ func _process(_delta: float) -> void:
 		_pole_mesh.surface_add_vertex(pivot_global_pos)
 		_pole_mesh.surface_end()
 
-func _input(event: InputEvent) -> void:
+func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
 		match action_mouse_button:
 			"MIDDLE_BUTTON":
