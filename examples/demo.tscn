@@ -31,4 +31,9 @@ mesh = SubResource("PlaneMesh_v44ss")
 
 [node name="ControlCamera3D" type="Camera3D" parent="."]
 transform = Transform3D(0.90076, -0.252619, 0.35329, 0, 0.81344, 0.581649, -0.434316, -0.523926, 0.732715, 1.20742, 1.98787, 2.50416)
+current = true
 script = ExtResource("1_qoept")
+translation_speed = 2.0
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3.08028)
