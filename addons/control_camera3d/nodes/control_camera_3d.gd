@@ -141,3 +141,8 @@ func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_WHEEL_DOWN:
 		if global_position.distance_to(pivot_pos) < zoom_out:
 			translate_object_local(Vector3.FORWARD * -_WHEEL_SENSITIVITY * zoom_speed)
+	
+	# On devices with precision scrolling (e.g. Mac), event.delta is a Vector2 with x and y
+	# scrolling deltas.
+	if event is InputEventPanGesture:
+		translate_object_local(-Vector3.FORWARD * _WHEEL_SENSITIVITY * zoom_speed * event.delta.y)
